@@ -1,32 +1,37 @@
 // src/pages/HomePage.jsx
 
+import { useState, useEffect } from 'react';
+import Preloader from '../components/Preloader';
 import ScrollingHero from '../components/ScrollingHero';
+import VillaSoul from '../components/VillaSoul';
+import AsymmetricGallery from '../components/AsymmetricGallery';
+// import Experiences from '../components/Experiences';
+import Experiences from '../components/Expreriences';
+import Testimonials from '../components/Testimonials';
+import Invitation from '../components/Invitation';
 
 const HomePage = () => {
+    // Simple state for controlling the preloader
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate asset loading
+        const timer = setTimeout(() => setLoading(false), 2000); // Hide preloader after 2 seconds
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
-        // Gunakan <main> untuk konten utama halaman
-        <main>
-            <ScrollingHero />
-
-            {/* Section selanjutnya akan dimulai tepat setelah animasi ScrollingHero selesai */}
-            <section className="relative bg-white p-12 z-10">
-                {/* Tambahkan 'relative z-10' untuk memastikan section ini tampil di atas elemen sticky jika terjadi overlap */}
-                <div className="container mx-auto">
-                    <h2 className="text-4xl font-bold text-center text-gray-800">
-                        Unforgettable Experiences
-                    </h2>
-                    <p className="text-center mt-4 max-w-2xl mx-auto text-gray-600">
-                        Setelah Anda memulai perjalanan, temukan pengalaman tak terlupakan yang telah kami siapkan.
-                    </p>
-                    {/* Di sini Anda bisa menambahkan komponen lain seperti ExperienceCard, dll. */}
-                </div>
-            </section>
-
-            <section className="h-screen bg-gray-100 p-12">
-                <h2 className="text-4xl font-bold text-center text-gray-800">Section Lainnya</h2>
-            </section>
-
-        </main>
+        <>
+            {loading && <Preloader />}
+            <main className={loading ? 'hidden' : 'block'}>
+                <ScrollingHero />
+                <VillaSoul />
+                <AsymmetricGallery />
+                <Experiences />
+                <Testimonials />
+                <Invitation />
+            </main>
+        </>
     );
 };
 
