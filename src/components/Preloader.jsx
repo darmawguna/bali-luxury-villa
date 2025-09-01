@@ -8,7 +8,7 @@ const Preloader = () => {
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }} // Fade-out effect when preloader is removed
-            transition={{ duration: 0.5, delay: 1.8 }}
+            transition={{ duration: 0.5 }}
         >
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
