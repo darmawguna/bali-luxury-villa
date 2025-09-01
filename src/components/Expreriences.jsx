@@ -1,15 +1,13 @@
-/* eslint-disable no-unused-vars */
-// src/components/Experiences.jsx - STYLED TO MATCH
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight, FiPlay } from 'react-icons/fi';
 
-// Impor gambar-gambar Anda
+// Import your images
 import diningImg from '../assets/pictures/istockphoto-1048574332-1024x1024.jpg';
 import wellnessImg from '../assets/pictures/istockphoto-1048574332-1024x1024.jpg';
 import cultureImg from '../assets/pictures/gallery-5.jpg';
 
-// Enhanced data structure matching VillaSoul style
 const experiencesData = [
     {
         id: 1,
@@ -44,7 +42,6 @@ const Experiences = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
 
-    // Auto-advance slides when not hovered
     useEffect(() => {
         if (!isHovered) {
             const interval = setInterval(() => {
@@ -74,12 +71,10 @@ const Experiences = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            {/* Background decorative elements - matching VillaSoul */}
             <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-amber-100/20 to-transparent rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-stone-100/30 to-transparent rounded-full blur-3xl"></div>
 
             <div className="container mx-auto px-4 md:px-8 lg:px-16 py-16 lg:py-24 relative z-10">
-                {/* Header Section - matching ScrollingHero style */}
                 <motion.div
                     className="text-center mb-20"
                     initial={{ opacity: 0, y: 30 }}
@@ -87,7 +82,7 @@ const Experiences = () => {
                     transition={{ duration: 0.8 }}
                 >
                     <motion.span
-                        className="inline-block text-amber-600 text-sm font-medium tracking-[0.2em] uppercase mb-4"
+                        className="inline-block text-amber-600 text-sm font-sans font-medium tracking-[0.2em] uppercase mb-4"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
@@ -96,7 +91,7 @@ const Experiences = () => {
                     </motion.span>
 
                     <motion.h2
-                        className="text-4xl md:text-6xl lg:text-7xl font-extralight text-stone-800 leading-[1.1]"
+                        className="text-4xl md:text-6xl lg:text-7xl font-serif font-extralight text-stone-800 leading-[1.1]"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
@@ -115,9 +110,7 @@ const Experiences = () => {
                     />
                 </motion.div>
 
-                {/* Main Content */}
                 <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 min-h-[70vh]">
-                    {/* Image Section */}
                     <motion.div
                         className="w-full lg:w-3/5"
                         initial={{ opacity: 0, x: -50 }}
@@ -143,7 +136,6 @@ const Experiences = () => {
                                 </motion.div>
                             </AnimatePresence>
 
-                            {/* Navigation Arrows */}
                             <div className="absolute top-1/2 -translate-y-1/2 z-20 w-full flex justify-between px-6">
                                 <motion.button
                                     onClick={goToPrevious}
@@ -163,23 +155,18 @@ const Experiences = () => {
                                 </motion.button>
                             </div>
 
-                            {/* Slide Indicators */}
                             <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
                                 {experiencesData.map((_, index) => (
                                     <button
                                         key={index}
                                         onClick={() => setCurrentIndex(index)}
-                                        className={`w-2 h-2 rounded-full transition-all duration-300 ${ currentIndex === index
-                                            ? 'bg-white scale-125'
-                                            : 'bg-white/50 hover:bg-white/75'
-                                            }`}
+                                        className={`w-2 h-2 rounded-full transition-all duration-300 ${ currentIndex === index ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75' }`}
                                     />
                                 ))}
                             </div>
                         </div>
                     </motion.div>
 
-                    {/* Content Section - matching VillaSoul style */}
                     <motion.div
                         className="w-full lg:w-2/5 flex flex-col justify-center"
                         initial={{ opacity: 0, x: 50 }}
@@ -195,7 +182,6 @@ const Experiences = () => {
                                 transition={{ duration: 0.6 }}
                                 className="space-y-8"
                             >
-                                {/* Icon and Subtitle */}
                                 <div className="flex items-center space-x-4">
                                     <motion.span
                                         className="text-4xl"
@@ -204,27 +190,21 @@ const Experiences = () => {
                                     >
                                         {currentExperience.icon}
                                     </motion.span>
-                                    <span className="text-amber-600 text-sm font-medium tracking-[0.2em] uppercase">
+                                    <span className="text-amber-600 text-sm font-sans font-medium tracking-[0.2em] uppercase">
                                         {currentExperience.subtitle}
                                     </span>
                                 </div>
-
-                                {/* Title */}
-                                <h3 className="text-4xl lg:text-5xl font-extralight text-stone-800 leading-tight">
+                                <h3 className="text-4xl lg:text-5xl font-serif font-extralight text-stone-800 leading-tight">
                                     {currentExperience.title}
                                 </h3>
-
-                                {/* Description */}
-                                <p className="text-lg text-stone-600 leading-relaxed font-light">
+                                <p className="text-lg text-stone-600 leading-relaxed font-sans font-light">
                                     {currentExperience.description}
                                 </p>
-
-                                {/* Highlights */}
                                 <div className="flex flex-wrap gap-2">
                                     {currentExperience.highlights.map((highlight, index) => (
                                         <motion.span
                                             key={index}
-                                            className="inline-flex items-center px-3 py-1 bg-amber-100 text-amber-800 text-sm font-medium rounded-full"
+                                            className="inline-flex items-center px-3 py-1 bg-amber-100 text-amber-800 text-sm font-sans font-medium rounded-full"
                                             initial={{ opacity: 0, scale: 0.8 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ delay: index * 0.1 }}
@@ -233,10 +213,8 @@ const Experiences = () => {
                                         </motion.span>
                                     ))}
                                 </div>
-
-                                {/* CTA Button */}
                                 <motion.button
-                                    className="group inline-flex items-center space-x-2 bg-gradient-to-r from-amber-600 to-stone-600 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 mt-6"
+                                    className="group inline-flex items-center space-x-2 bg-gradient-to-r from-amber-600 to-stone-600 text-white px-6 py-3 rounded-full font-sans font-medium shadow-lg hover:shadow-xl transition-all duration-300 mt-6"
                                     whileHover={{ scale: 1.05, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
@@ -255,11 +233,9 @@ const Experiences = () => {
                 </div>
             </div>
 
-            {/* Progress Bar */}
             <div className="absolute bottom-0 left-0 w-full h-1 bg-stone-200">
                 <motion.div
                     className="h-full bg-gradient-to-r from-amber-400 to-stone-400"
-                    initial={{ scaleX: 0 }}
                     animate={{ scaleX: (currentIndex + 1) / experiencesData.length }}
                     transition={{ duration: 0.5 }}
                     style={{ transformOrigin: "0%" }}

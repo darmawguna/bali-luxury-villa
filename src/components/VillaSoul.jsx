@@ -1,8 +1,3 @@
-// ============================================================
-// VILLA SOUL COMPONENT - IMPROVED VERSION
-// Analisis: Meningkatkan visual hierarchy, interaktivity, dan luxury feel
-// ============================================================
-
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
@@ -16,8 +11,8 @@ const soulContent = [
         title: "Crafted from Nature",
         description: "Every corner of Villa Soul is built with locally sourced teak wood, natural stone, and sustainable bamboo—materials that breathe in harmony with the lush tropical surroundings.",
         imageUrl: soulMaterials,
-        icon: "🌿", // Menambahkan icon untuk visual hierarchy
-        highlights: ["Locally sourced teak", "Natural stone", "Sustainable bamboo"] // Detail highlights
+        icon: "🌿",
+        highlights: ["Locally sourced teak", "Natural stone", "Sustainable bamboo"]
     },
     {
         title: "Seamless Indoor-Outdoor Living",
@@ -36,11 +31,10 @@ const soulContent = [
 ];
 
 const VillaSoul = () => {
-    const [activeFeatureIndex, setActiveFeatureIndex] = useState(0); // Default ke 0 bukan -1
+    const [activeFeatureIndex, setActiveFeatureIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const sectionRef = useRef(null);
 
-    // Parallax effect untuk header
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["start end", "end start"]
@@ -52,7 +46,6 @@ const VillaSoul = () => {
     const images = [soulMain, ...soulContent.map(item => item.imageUrl)];
     const activeImage = images[activeFeatureIndex + 1];
 
-    // Auto-advance feature untuk demo purposes (optional)
     useEffect(() => {
         if (!isHovered) {
             const interval = setInterval(() => {
@@ -80,7 +73,7 @@ const VillaSoul = () => {
                     style={{ y: headerY, opacity: headerOpacity }}
                 >
                     <motion.span
-                        className="inline-block text-amber-600 text-sm font-medium tracking-[0.2em] uppercase mb-4"
+                        className="inline-block text-amber-600 text-sm font-medium tracking-[0.2em] uppercase mb-4 font-sans"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
@@ -89,7 +82,7 @@ const VillaSoul = () => {
                     </motion.span>
 
                     <motion.h2
-                        className="text-5xl md:text-6xl lg:text-7xl font-extralight text-stone-800 mb-8 leading-[1.1]"
+                        className="text-5xl md:text-6xl lg:text-7xl font-serif font-extralight text-stone-800 mb-8 leading-[1.1]"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
@@ -118,7 +111,6 @@ const VillaSoul = () => {
                     >
                         <div className="sticky top-24 h-[70vh] lg:h-[calc(100vh-12rem)]">
                             <div className="relative h-full rounded-2xl overflow-hidden shadow-2xl">
-                                {/* Image container with enhanced styling */}
                                 <div className="relative h-full bg-stone-100">
                                     <AnimatePresence mode="wait">
                                         <motion.img
@@ -129,26 +121,16 @@ const VillaSoul = () => {
                                             initial={{ opacity: 0, scale: 1.05 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             exit={{ opacity: 0 }}
-                                            transition={{
-                                                duration: 0.8,
-                                                ease: [0.4, 0, 0.2, 1] // Custom cubic-bezier untuk smooth transition
-                                            }}
+                                            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
                                         />
                                     </AnimatePresence>
-
-                                    {/* Overlay gradient */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-
-                                    {/* Feature indicator dots */}
                                     <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
                                         {soulContent.map((_, index) => (
                                             <button
                                                 key={index}
                                                 onClick={() => setActiveFeatureIndex(index)}
-                                                className={`w-2 h-2 rounded-full transition-all duration-300 ${ activeFeatureIndex === index
-                                                    ? 'bg-white scale-125'
-                                                    : 'bg-white/50 hover:bg-white/75'
-                                                    }`}
+                                                className={`w-2 h-2 rounded-full transition-all duration-300 ${ activeFeatureIndex === index ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75' }`}
                                             />
                                         ))}
                                     </div>
@@ -164,14 +146,13 @@ const VillaSoul = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        {/* Introduction paragraph with better styling */}
                         <motion.div
                             className="mb-20"
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.3 }}
                         >
-                            <p className="text-xl text-stone-600 leading-relaxed font-light">
+                            <p className="text-xl text-stone-600 leading-relaxed font-sans font-light">
                                 More than a place to stay,
                                 <span className="font-medium text-stone-800"> Villa Bali </span>
                                 is a testament to mindful luxury. Our philosophy is simple: to create a
@@ -180,60 +161,40 @@ const VillaSoul = () => {
                             </p>
                         </motion.div>
 
-                        {/* Enhanced Feature Cards */}
                         <div className="space-y-12">
                             {soulContent.map((item, index) => (
                                 <motion.div
                                     key={index}
-                                    className={`group relative cursor-pointer transition-all duration-500 ${ activeFeatureIndex === index ? 'scale-105' : ''
-                                        }`}
+                                    className={`group relative cursor-pointer transition-all duration-500 ${ activeFeatureIndex === index ? 'scale-105' : '' }`}
                                     onViewportEnter={() => setActiveFeatureIndex(index)}
                                     onClick={() => setActiveFeatureIndex(index)}
                                     whileHover={{ x: 10 }}
                                 >
-                                    {/* Background card */}
-                                    <div className={`absolute inset-0 rounded-xl transition-all duration-500 ${ activeFeatureIndex === index
-                                        ? 'bg-gradient-to-r from-amber-50 to-stone-50 shadow-lg'
-                                        : 'bg-transparent'
-                                        }`}></div>
-
+                                    <div className={`absolute inset-0 rounded-xl transition-all duration-500 ${ activeFeatureIndex === index ? 'bg-gradient-to-r from-amber-50 to-stone-50 shadow-lg' : 'bg-transparent' }`}></div>
                                     <div className="relative p-8">
-                                        {/* Icon and Title */}
                                         <div className="flex items-start space-x-4 mb-4">
                                             <motion.span
                                                 className="text-3xl"
-                                                animate={{
-                                                    scale: activeFeatureIndex === index ? 1.2 : 1,
-                                                    rotate: activeFeatureIndex === index ? 5 : 0
-                                                }}
+                                                animate={{ scale: activeFeatureIndex === index ? 1.2 : 1, rotate: activeFeatureIndex === index ? 5 : 0 }}
                                                 transition={{ duration: 0.3 }}
                                             >
                                                 {item.icon}
                                             </motion.span>
                                             <motion.h3
-                                                className="text-2xl lg:text-3xl font-light text-stone-800"
-                                                animate={{
-                                                    opacity: activeFeatureIndex === index ? 1 : 0.6,
-                                                    color: activeFeatureIndex === index ? '#1c1917' : '#57534e'
-                                                }}
+                                                className="text-2xl lg:text-3xl font-serif font-light text-stone-800"
+                                                animate={{ opacity: activeFeatureIndex === index ? 1 : 0.6, color: activeFeatureIndex === index ? '#1c1917' : '#57534e' }}
                                                 transition={{ duration: 0.3 }}
                                             >
                                                 {item.title}
                                             </motion.h3>
                                         </div>
-
-                                        {/* Description */}
                                         <motion.p
-                                            className="text-stone-600 leading-relaxed mb-6 text-lg"
-                                            animate={{
-                                                opacity: activeFeatureIndex === index ? 1 : 0.5
-                                            }}
+                                            className="text-stone-600 leading-relaxed mb-6 text-lg font-sans"
+                                            animate={{ opacity: activeFeatureIndex === index ? 1 : 0.5 }}
                                             transition={{ duration: 0.3 }}
                                         >
                                             {item.description}
                                         </motion.p>
-
-                                        {/* Highlights */}
                                         <AnimatePresence>
                                             {activeFeatureIndex === index && (
                                                 <motion.div
@@ -246,7 +207,7 @@ const VillaSoul = () => {
                                                     {item.highlights.map((highlight, hIndex) => (
                                                         <motion.span
                                                             key={hIndex}
-                                                            className="inline-flex items-center px-3 py-1 bg-amber-100 text-amber-800 text-sm font-medium rounded-full"
+                                                            className="inline-flex items-center px-3 py-1 bg-amber-100 text-amber-800 text-sm font-sans font-medium rounded-full"
                                                             initial={{ opacity: 0, scale: 0.8 }}
                                                             animate={{ opacity: 1, scale: 1 }}
                                                             transition={{ delay: hIndex * 0.1 }}
@@ -257,43 +218,15 @@ const VillaSoul = () => {
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>
-
-                                        {/* Active indicator line */}
                                         <motion.div
                                             className="absolute left-0 top-8 w-1 bg-gradient-to-b from-amber-400 to-stone-400 rounded-full"
-                                            animate={{
-                                                height: activeFeatureIndex === index ? '80%' : '0%',
-                                                opacity: activeFeatureIndex === index ? 1 : 0
-                                            }}
+                                            animate={{ height: activeFeatureIndex === index ? '80%' : '0%', opacity: activeFeatureIndex === index ? 1 : 0 }}
                                             transition={{ duration: 0.5 }}
                                         />
                                     </div>
                                 </motion.div>
                             ))}
                         </div>
-
-                        {/* Call to action */}
-                        <motion.div
-                            className="mt-16 pt-8 border-t border-stone-200"
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            transition={{ delay: 1 }}
-                        >
-                            <motion.button
-                                className="group inline-flex items-center space-x-2 bg-gradient-to-r from-amber-600 to-stone-600 text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <span>Explore Our Villas</span>
-                                <motion.span
-                                    className="text-lg"
-                                    animate={{ x: [0, 5, 0] }}
-                                    transition={{ repeat: Infinity, duration: 2 }}
-                                >
-                                    →
-                                </motion.span>
-                            </motion.button>
-                        </motion.div>
                     </motion.div>
                 </div>
             </div>
